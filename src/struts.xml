@@ -8,5 +8,20 @@
        <action name="user" class="com.mu.second.UserAction">
            <result>/userresult.jsp</result>
        </action>
+       
+       <action name="user2" class="com.mu.thrid.User2Action">
+           <result>/userresult.jsp</result>
+       </action>
+       
+       <!-- 同个action类处理不同的处理方法 -->
+       <action name="multi1" class="com.mu.fourth.MultiAction">
+           <result>/fourth1.jsp</result>
+       </action>
+       
+       <!-- 自定义处理方法 -->
+       <action name="multi2" class="com.mu.fourth.MultiAction" method="myexecute">
+           <result>/fourth2.jsp</result>
+       </action>
+       
     </package>
 </struts>
