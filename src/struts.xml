@@ -1,5 +1,8 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
+	<!--values 指定全局信息文件名-->
+	<constant name="struts.custom.i18n.resources" value="messageResource"></constant>
+
     <package name="mu" extends="struts-default">
        <action name="login" class="com.mu.first.LoginAction">
            <result>/result.jsp</result>
@@ -21,6 +24,17 @@
        <!-- 自定义处理方法 -->
        <action name="multi2" class="com.mu.fourth.MultiAction" method="myexecute">
            <result>/fourth2.jsp</result>
+       </action>
+       
+        <!-- 验证 -->
+       <action name="fifth1" class="com.mu.fifth.ValidateAction">
+           <result>/fifth1.jsp</result>
+           <result name="input"> /fifth1.jsp</result>
+       </action>
+       
+       <action name="fifth2" class="com.mu.fifth.ValidateAction" method="myexecute">
+           <result>/fifth2.jsp</result>
+           <result name="input">/fifth2.jsp</result>
        </action>
        
     </package>
