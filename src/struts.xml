@@ -2,8 +2,14 @@
 <struts>
 	<!--values 指定全局信息文件名-->
 	<constant name="struts.custom.i18n.resources" value="messageResource"></constant>
-
+	<constant name="struts.devMode" value="true" />
+	
     <package name="mu" extends="struts-default">
+    
+    	<result-types>
+    		<result-type name="mujson" class="com.mu.resulttype.MuResultType"></result-type>
+    	</result-types>
+    
        <action name="login" class="com.mu.first.LoginAction">
            <result>/result.jsp</result>
        </action>
@@ -37,5 +43,56 @@
            <result name="input">/fifth2.jsp</result>
        </action>
        
+       <action name="mujson" class="com.mu.resulttype.MuJsonAction">
+       		<result type="mujson">
+       			<param name="dataName">data</param>
+       		</result>
+       </action>
+              
     </package>
+    
+    <!-- 继承json-default包 -->
+    <package name="muextend" extends="json-default">
+    	<action name="strutsjson" class="com.mu.resulttype.StrutsJsonAction">
+			<result type="json">
+				<!-- 指定会直接返回它的值，否则就成为对象的属性与值 -->
+				 <param name="root">date</param>
+			</result>
+    	</action>
+    	
+    	<action name="objectjson" class="com.mu.resulttype.StrutsJsonObjectAction">
+			<result type="json">
+				<!-- 返回的对象的基类属性默认是不会返回的，这里设置为false使其返回 -->
+				<param name="ignoreHierarchy">false</param>  
+				<param name="root">userInfo</param>
+			</result>
+    	</action>
+    	
+    	<!-- 如果有指定扩展名的，那么redirect都要去修改，而使用 redirectAction则不用-->
+    	<action name="redirect" class="com.mu.resulttype.RedirectAction">
+    		<result type="redirect">
+    			<param name="location">http://www.baidu.com?name=${name}</param>
+    			<!-- 也可以直接指定不用节点写 -->
+    		</result>
+    	</action>
+    	
+    	<action name="redirectAction" class="com.mu.resulttype.RedirectActionAction">
+    		<result type="redirectAction">
+			 	<param name="actionName">redirect</param>
+    			<param name="name">${name}</param>
+    			<!-- 也可以直接指定不用节点写，但不能传参数，而且只能使用默认的命名空间 -->
+    		</result>
+    	</action>
+    	
+    	<action name="filedown" class="com.mu.resulttype.FileDownAction">
+    		<result type="stream">
+    			<param name="contentType">application/octet-stream</param>  
+                <param name="contentDisposition">attachment;fileName="${fileName}"</param>
+                <param name="inputName">fileStream</param>  
+                <param name="bufferSize">1024</param>
+    		</result>
+    	</action>
+    	
+    </package>
+    
 </struts>
