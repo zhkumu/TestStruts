@@ -3,6 +3,10 @@
 	<!--values 指定全局信息文件名-->
 	<constant name="struts.custom.i18n.resources" value="messageResource"></constant>
 	<constant name="struts.devMode" value="true" />
+	<!-- 指定临时文件夹路径，不指定默认为容器的临时文件夹，最好使用绝对路径 -->
+	<constant name="struts.multipart.saveDir" value="D:/TestStruts/WebRoot/upload"></constant>
+	
+	<include file="com/mu/action/struts-action.xml"></include>
 	
     <package name="mu" extends="struts-default">
     
