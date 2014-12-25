@@ -7,6 +7,7 @@
 	<constant name="struts.multipart.saveDir" value="D:/TestStruts/WebRoot/upload"></constant>
 	
 	<include file="com/mu/action/struts-action.xml"></include>
+	<include file="com/mu/interceptor/struts-action.xml"></include>
 	
     <package name="mu" extends="struts-default">
     

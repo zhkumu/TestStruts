@@ -1,14 +1,22 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 	
-    <package name="mu" extends="struts-default">
-    
+    <package name="action" extends="struts-default">
     	<action name="proaction" class="com.mu.action.ProParamAction">
     		<result>/index.jsp</result>
     	</action>
     	
     	<action name="modelaction" class="com.mu.action.ModelParamAction">
     		<result>/index.jsp</result>
+    	</action>
+    	
+    	<action name="modelaction2" class="com.mu.action.ModelParam2Action">
+    		<!-- 重新刷新valusstack中的userInfo对象 -->
+    		<interceptor-ref name="modelDriven">
+    			<param name="refreshModelBeforeResult">true</param>
+    		</interceptor-ref>
+    		<interceptor-ref name="defaultStack"></interceptor-ref>
+    		<result>/modelparam.jsp</result>
     	</action>
     	
     	<action name="fileupload" class="com.mu.action.FileUploadAction">

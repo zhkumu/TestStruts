@@ -1,0 +1,29 @@
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+    <package name="interceptor" extends="struts-default">
+				    
+    	<interceptors>
+    		<interceptor name="mu" class="com.mu.interceptor.MyInterceptor"></interceptor>
+    	
+    		<interceptor-stack name="mudefault-stack">
+    			<interceptor-ref name="mu"></interceptor-ref>
+    			<interceptor-ref name="defaultStack"></interceptor-ref>
+    		</interceptor-stack>
+    		
+    	</interceptors>
+    	<!-- 配置默认的过滤器栈，就不用每个action都去写 -->
+    	<default-interceptor-ref name="mudefault-stack" />
+    	
+    	<action name="interceptor" class="com.mu.interceptor.MyInterceptorAction">
+    		<result>/indes.jsp</result>
+    		<!-- 如果没有配置默认的过滤器栈，需要在最后配上defaultStack -->
+			<!-- <interceptor-ref name="mu"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref> -->
+    	</action>
+    	
+    	<action name="interceptorjson" class="com.mu.interceptor.InterceptorJsonAction">
+    	</action>
+    </package>
+    
+</struts>
