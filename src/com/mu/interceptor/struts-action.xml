@@ -6,9 +6,15 @@
     	<interceptors>
     		<interceptor name="mu" class="com.mu.interceptor.MyInterceptor"></interceptor>
     	
+    		<!-- 方法过滤器可以指定对某些方法有效 -->
+    		<interceptor name="mumethod" class="com.mu.interceptor.MyMethodInterceptor">
+    			<param name="excludeMethods">execute</param>
+    			<param name="includeMethods">execute</param>
+    		</interceptor>
+    	
     		<interceptor-stack name="mudefault-stack">
-    			<interceptor-ref name="mu"></interceptor-ref>
     			<interceptor-ref name="defaultStack"></interceptor-ref>
+    			<interceptor-ref name="mu"></interceptor-ref>
     		</interceptor-stack>
     		
     	</interceptors>
@@ -16,13 +22,20 @@
     	<default-interceptor-ref name="mudefault-stack" />
     	
     	<action name="interceptor" class="com.mu.interceptor.MyInterceptorAction">
-    		<result>/indes.jsp</result>
-    		<!-- 如果没有配置默认的过滤器栈，需要在最后配上defaultStack -->
-			<!-- <interceptor-ref name="mu"></interceptor-ref>
-			<interceptor-ref name="defaultStack"></interceptor-ref> -->
+    		<result>/index.jsp</result>
+    		<!-- 如果没有配置默认的过滤器栈，需要配置defaultStack -->
+    		<!-- <interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mu"></interceptor-ref> -->
     	</action>
     	
     	<action name="interceptorjson" class="com.mu.interceptor.InterceptorJsonAction">
+    	</action>
+    	
+    	<action name="methodinterceptor" class="com.mu.interceptor.MyMethodInterceptorAction">
+    		<result>/index.jsp</result>
+    		<interceptor-ref name="defaultStack" />
+    		<interceptor-ref name="mumethod">
+    		</interceptor-ref>
     	</action>
     </package>
     

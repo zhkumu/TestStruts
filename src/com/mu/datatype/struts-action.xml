@@ -5,6 +5,10 @@
     	<action name="mudatatype" class="com.mu.datatype.DataTypeAction">
     		<result>/index.jsp</result>
     	</action>
+    	
+    	<action name="listdatatype" class="com.mu.datatype.ListDataTypeAction">
+    		<result>/index.jsp</result>
+    	</action>
     </package>
     
 </struts>
