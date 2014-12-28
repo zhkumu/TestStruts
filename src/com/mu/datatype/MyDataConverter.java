@@ -27,7 +27,7 @@ public class MyDataConverter extends StrutsTypeConverter {
 				try {
 					list.add((Date)format.parseObject(dateStr));
 				} catch (ParseException e) {
-					e.printStackTrace();
+					throw new RuntimeException(e);
 				}
 			}
 			System.out.println("转换成功");
@@ -39,9 +39,8 @@ public class MyDataConverter extends StrutsTypeConverter {
 			System.out.println("转换成功");
 			return format.parseObject(dateStr);
 		} catch (ParseException e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
-		return null;
 	}
 
 	@Override
