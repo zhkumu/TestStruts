@@ -10,6 +10,8 @@
 	<include file="com/mu/interceptor/struts-action.xml"></include>
 	<include file="com/mu/datatype/struts-action.xml"></include>
 	<include file="com/mu/validate/struts.xml"></include>
+	<include file="com/mu/error/struts.xml"></include>
+	
 	
     <package name="mu" extends="struts-default">
     

@@ -1,0 +1,23 @@
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+    <package name="error" extends="struts-default">
+    	<!-- dispatcher不能请求action，会查到不资源 -->
+    	<global-results>
+			<result name="error" type="chain">
+				<param name="actionName">error</param>
+			</result>
+		</global-results>
+    	<global-exception-mappings>
+    		<exception-mapping result="error" exception="Exception" name="error" ></exception-mapping>
+    	</global-exception-mappings>
+		
+    	<action name="myerror" class="com.mu.error.MyErrorAction">
+    	</action>
+    	<action name="error" class="com.mu.error.ErrorAction">
+    		<result>/error.jsp</result>
+    	</action>
+    	
+    </package>
+    
+</struts>

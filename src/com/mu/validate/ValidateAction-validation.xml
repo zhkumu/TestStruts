@@ -1,7 +1,5 @@
-<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.3//EN" "http://www.opensymphony.com/xwork/xwork-validator-1.0.3.dtd">
-
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN" "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
 <validators>
-	
 	<field name="name">
 		<field-validator type="requiredstring" short-circuit="true">
 			<param name="trim">true</param>
@@ -14,6 +12,10 @@
 		</field-validator>
 	</field>
 	<field name="date">
+		<!-- 类型转换短路，不再进行后面的数据验证步骤 ，但如果类型转换原来有错误信息提示的，会重复加上-->
+		<field-validator type="conversion" short-circuit="true">
+			 <message>格式应该yyy</message>
+		</field-validator>
 		<field-validator type="requiredstring" short-circuit="true">
 			<param name="trim">true</param>
 			<message>日期不能为空</message>
