@@ -1,7 +1,24 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-	
+	<!-- 没有指定命名空间，默认为“”，找action会优先找命名空间匹配的action，找不到就在默认命名空间里，再找不到就报错 -->
     <package name="action" extends="struts-default">
+    	
+    	<default-action-ref name="common" ></default-action-ref>
+    
+    	<action name="common">
+    		<result>/common.jsp</result>
+    	</action>
+    
+    	<!-- 要直接访问web-inf下的jsp使用这种方式 -->
+    	<action name="*">
+    		<result>/WEB-INF/{1}.jsp</result>
+    	</action>
+    
+    	<action name="action">
+    		<result>/action.jsp</result>
+    	</action>
+    
+    
     	<action name="proaction" class="com.mu.action.ProParamAction">
     		<result>/index.jsp</result>
     	</action>
@@ -22,6 +39,16 @@
     	<action name="fileupload" class="com.mu.action.FileUploadAction">
     		<result>/index.jsp</result>
     	</action>
+    	
+    	
+    	<!-- 列出web根目录下的文件树 -->
+    	<action name="">
+    		<result>.</result>
+    	</action>
+    	
+    	<!-- action先找命名空间里最匹配的那个，如果找不到则按配置的顺序找没有优先级别 -->
+    	
+    	
     </package>
     
     
